@@ -33,7 +33,9 @@ jobs:
           KEY_PASSWORD: ${{ secrets.ALIAS_PASSWORD }}
           ALIAS_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
-          echo $KEY_JKS > android/key.jks
+          cat > android/key.jks <<EOL
+          $KEY_JKS
+          EOL
           echo "storePassword=$KEY_PASSWORD" > android/key.properties
           echo "keyPassword=$ALIAS_PASSWORD" >> android/key.properties
           echo "keyAlias=upload" >> android/key.properties
